@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div id="paramount">
+        <h1>Paramount Prize Wall of Fame</h1>
+        <img src="{% static 'core/images/paramount.png' %}" style="max-width: 100%;">
+    </div>
+
+    {% include 'core/footer.html' %}
+
+{% endblock %}

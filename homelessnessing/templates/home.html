@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  
+
+  <title>Code Classroom</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper" class="toggled">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Classroom</div>
+      <div class="list-group list-group-flush">
+        <a href="index.html" class="list-group-item list-group-item-action bg-light">Overview</a>
+        <a href="task1.html" class="list-group-item list-group-item-action bg-light">Task #1</a>
+        <a href="task2.html" class="list-group-item list-group-item-action bg-light">Task #2</a>
+        <a href="task3.html" class="list-group-item list-group-item-action bg-light">Task #3</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->    
+	
+	<!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Close</button>
+		
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+		
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="login.html" onclick = "delCookie()">Log out<span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <h1 class="mt-4">CS 101: INTRODUCTION TO THE JAVA PROGRAMMING LANGUAGE</h1>
+		<table border="0" width="100%" height="90%" style="font-size; 22pt;">
+
+		<tr> 
+			<td style="vertical-align: top;" width="40%">			
+			<h3 class="mt-4">Instructor Information</h3>
+			<ul>
+			
+<p>Name: Jacob Dean</p>
+			
+<p>Email: jdean@miuiuc.edu</p>				
+			
+<p>Office Hours: 9:00 AM to 5:00 PM</p>		
+			<p>Office Phone: 923-518-8274</p>
+			
+</ul>
+			</div>
+			</td>
+			<td style="vertical-align: top;" width="60%">				
+			<h3 class="mt-4">Topics Covered</h3>
+			<ul>
+			
+<p>Primitive data types, control statements, methods, and arrays.</p>
+			
+<p>Classes and their objects in addition to inheritance and polymorphism concepts.</p>
+			
+<p>GUI based applications and the applications of event-driven programming concepts.</p>
+			
+<p>Use input and output to manage and process a large quantity of data.</p>
+			
+</ul>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;" width="40%">	
+			<h3 class="mt-4">Class Details</h3>
+			<ul>
+			
+<p>There is no extra credit and cheating is forbidden.</p>
+			
+<p>Due dates are deadlines and after that the grade is a 0.</p>
+			
+<p>Tasks may be resubmitted until mindnight of the due date.</p>
+			
+<p>Try your hardest to solve a problem before asking me for help.</p>
+			
+<p>Contact me if you can't complete a task on time for some reason.</p>
+			
+</ul>
+			</div>
+			</td>
+			<td style="vertical-align: top;" width="60%">	
+			<h3 class="mt-4">Course Materials</h3>
+			<ul>
+			
+<p>Books: </p>
+			
+<ul>
+			
+<p>Introduction to Java Programming, Comprehensive Version, Tenth Edition, Y. Daniel Liang </p>
+			
+<p>Java: An Introduction to Computer Science & Programming, Second Edition, Walter Savitch </p>
+			
+</ul>
+			
+<p>Applications:</p>
+			
+<ul>
+			
+<p>Eclipse 4.3 (Kepler) with a Java 6 JRE/JDK.</p>
+			
+</ul>
+			</td>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+	  if ($(this).text() == "Close") { 
+        $(this).text("Options"); 
+    } else { 
+        $(this).text("Close"); 
+    }; 
+    });
+
+$("#").click(function() { 
+    if ($(this).text() == "Close") { 
+        $(this).text("Options"); 
+    } else { 
+        $(this).text("Close"); 
+    }; 
+});
+  </script>
+
+ <script>
+function getHTML(response){
+	a = response.split(";")
+	var textnode = document.createTextNode(a[0]);     
+	document.getElementById("tit").appendChild(textnode);     
+	var textnode = document.createTextNode(a[1]);     
+	document.getElementById("insInf").appendChild(textnode);   
+	var textnode = document.createTextNode(a[2]);     
+	document.getElementById("topCov").appendChild(textnode);   
+	var textnode = document.createTextNode(a[3]);     
+	document.getElementById("claDet").appendChild(textnode);   
+	var textnode = document.createTextNode(a[4]);     
+	document.getElementById("couMat").appendChild(textnode);   
+}
+
+	
+	function delCookie() {
+
+        document.cookie = "username=" + document.getElementById("txtUser").value;
+        document.cookie = "password=" + document.getElementById("txtPass").value;
+        var d = new Date();
+        d.setTime(d.getTime() - 1 * 24 * 60 * 60 * 1000);
+        var expires = "expires=" + d.toUTCString();
+        // document.cookie = cookieString + expires + ";path=/";
+    }
+
+</script>
+  
+</body>
+
+</html>

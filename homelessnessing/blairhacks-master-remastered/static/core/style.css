@@ -1,0 +1,554 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+* {
+    font-family: "Ubuntu", sans-serif;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+::selection {
+    background: rgba(170, 0, 0, .8); /* WebKit/Blink Browsers */
+    color: white;
+}
+
+::-moz-selection {
+    background: rgba(170, 0, 0, .8); /* Gecko Browsers */
+    color: white;
+}
+
+html {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: 0;
+}
+
+body {
+    position: absolute;
+    top: 0;
+    font-family: "Open Sans", sans-serif;
+    width: calc(100% + calc(100vw - 100%));
+}
+
+#navbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: calc(100% + calc(100vw - 100%));
+    text-align: center;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-flow: row wrap;
+    justify-content: center;
+
+    background-color: rgba(170, 0, 0, 0);
+
+    font-size: 20pt;
+
+    z-index: 100;
+}
+
+#navbar a {
+    text-decoration: none;
+
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+#navbar a:hover {
+    background-color: #990000;
+    transition-duration: 0.4s;
+}
+
+#nav-button {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+.hide {
+    display: none;
+}
+
+#mob-nav {
+    background-color: #990000;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    position: fixed;
+    z-index: 99999999999999;
+    display: none;
+    top: 0;
+    font-size: 20pt;
+}
+
+#mob-nav a {
+    text-decoration: none;
+
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+#mob-nav a:hover {
+    background-color: #990000;
+}
+
+#mob-nav-close {
+}
+
+#splash {
+    position: relative;
+    background: url("/static/core/images/BlairSteeple.jpg") no-repeat center;
+    background-size: cover;
+
+    height: 100vh;
+    line-height: 100vh;
+    text-align: center;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#splash #splashlogo {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    flex: 1 0 100%;
+    margin-right: 2.5vw;
+    margin-top: 10vh;
+}
+
+#splash #bt1 {
+    margin-right: 2.5vw;
+}
+
+#splash a.button {
+    margin: 10vh 30px 20vh;
+    display: block;
+    width: 200px;
+    line-height: 1.5;
+    font-size: 20pt;
+    text-decoration: none;
+
+    background-color: #AA0000;
+    color: white;
+    padding: .5em;
+    border-radius: 5px;
+
+    z-index: 100;
+}
+
+#splash:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(170, 0, 0, .5));
+}
+
+#splash .logo {
+    vertical-align: center;
+    display: block;
+    max-height: 55vh;
+    z-index: 100;
+}
+
+#content {
+    width: 70%;
+    max-width: 800px;
+
+    margin: auto;
+    overflow-y: auto;
+}
+
+#paramount {
+    width: 70%;
+    max-width: 800px;
+    margin: 10em auto auto;
+}
+
+#content a {
+    text-decoration: underline;
+    color: #AA0000;
+}
+
+#content a:hover {
+    color: #990000;
+}
+
+.section {
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.section .section_title {
+    padding-bottom: .25em;
+    font-size: 32pt;
+    font-weight: bold;
+    color: #AA0000;
+    border-bottom: solid 2px #AA0000;
+    margin-bottom: .5em;
+}
+
+.section p {
+    line-height: 1.5;
+    font-size: 14pt;
+    padding-bottom: 1.5em;
+
+    text-align: justify;
+}
+
+.section h1 {
+    line-height: 1.5;
+    padding-bottom: .25em;
+
+    font-size: 20pt;
+    font-weight: bold;
+    color: #AA0000;
+}
+
+.section h2 {
+    line-height: 1.5;
+    padding-bottom: .25em;
+
+    font-size: 16pt;
+    font-weight: bold;
+    color: #AA0000;
+}
+
+.section em {
+    font-style: italic;
+}
+
+.section strong {
+    font-weight: bold;
+    color: #AA0000;
+}
+
+#footer {
+    background-color: #AA0000;
+    width: 100%;
+    text-align: center;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#footer_sections {
+    display: block;
+    text-align: left;
+}
+
+#footer .footer_section {
+    border-left: solid white 2px;
+    display: inline-block;
+    padding: .5em;
+    margin: 1.5em 2.5em;
+    vertical-align: top;
+
+    text-align: left;
+
+    font-size: 16pt;
+    color: white;
+}
+
+#footer .footer_section * {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+#footer a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+#footer a:hover {
+    color: #676767;
+}
+
+#footer h1 {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.blair_form {
+    width: 80%;
+    max-width: 600px;
+    margin: 5em auto 10em;
+    font-size: 14pt;
+
+    padding: .25em;
+}
+
+.blair_form h1 {
+    font-size: 32pt;
+    font-weight: bold;
+    color: #AA0000;
+    border-bottom: #AA0000 2px solid;
+    padding-bottom: .25em;
+    margin-bottom: .25em;
+    line-height: 1.5;
+}
+
+.blair_form h2 {
+    font-size: 28pt;
+    color: #AA0000;
+    padding-bottom: .15em;
+    line-height: 1.5;
+}
+
+.blair_form p {
+    font-size: 4pt;
+    color: white;
+}
+
+.blair_form .field {
+    width: 100%;
+    display: block;
+    padding-top: .7em;
+    padding-bottom: .25em;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.blair_form .field > input, select {
+    width: 100%;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: 1.3;
+    padding: .4em .1em;
+    margin: 0;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: none;
+}
+
+.blair_form .field > input[type=submit] {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #990000;
+    color: white;
+}
+
+.blair_form .field > input[type=submit] {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #990000;
+    color: white;
+}
+
+.blair_form .field > input[type=submit]:hover {
+    background-color: #650000;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.blair_form .field > input[type=text] {
+    background-color: #990000;
+    color: white;
+    padding-left: 0.5em;
+}
+
+.blair_form .field > input[type=email] {
+    background-color: #990000;
+    color: white;
+    padding-left: 0.5em;
+}
+
+.blair_form .field > input[type=password] {
+    background-color: #990000;
+    color: white;
+    padding-left: 0.5em;
+}
+
+.blair_form .field > select {
+    background-color: #990000;
+    color: white;
+    padding-left: 0.5em;
+}
+
+.blair_form .field > input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, select:focus {
+    background-color: #650000;
+}
+
+.blair_form .field > label {
+    font-weight: bold;
+    color: #AA0000;
+    padding-bottom: .2em;
+}
+
+.blair_form .field li {
+    padding-top: .2em;
+}
+
+.alert {
+    width: 100%;
+    background-color: #FF6600;
+    border: #dd5500 solid 2px;
+    border-radius: 4px;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+    color: white;
+    padding: .25em;
+    margin-top: .25em;
+    margin-bottom: .25em;
+}
+
+.alert strong {
+    font-weight: bold;
+}
+
+a.button {
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: max-content;
+    line-height: 1.5;
+    font-size: 20pt;
+    text-decoration: none;
+
+    background-color: #AA0000;
+    color: white;
+    padding: .5em;
+    border-radius: 5px;
+
+    z-index: 100;
+    position: relative;
+}
+
+a.button:hover {
+    background-color: #990000;
+}
+
+@media screen and (max-width: 768px) {
+    a.button {
+        margin-top: 1em !important;
+    }
+
+    .section p {
+        text-align: left;
+        font-size: 13pt;
+    }
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #990000;
+    color: white;
+}
+
+ul {
+    list-style: square outside none;
+    line-height: 1.5;
+}
+
+li {
+    margin-left: 1.25em;
+    padding-top: .25em;
+}
+
+img[src*="#sponsor"] {
+   display: block;
+   height:15vh;
+   margin-left: auto;
+   margin-right: auto;
+}
