@@ -215,21 +215,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script> 
-	$(() => {
-		$('.card-img-top').click((e) => {
-			$.ajax({
-				type: 'GET', 
-				url: '/get_data_res',
-				data: {
-					query: $(this).text().toLowerCase()
-				}
-			});
-			e.preventDefault();
-		});
-	});
-  </script>
-  
 
 </body>
 
