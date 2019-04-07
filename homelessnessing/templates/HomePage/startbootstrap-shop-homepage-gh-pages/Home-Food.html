@@ -43,9 +43,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
-		  <li class="nav-item">
-			<a class="nav-link" href="/">Logout</a>
-		  </li>
         </ul>
       </div>
     </div>
@@ -60,7 +57,7 @@
 
         <h1 class="my-4">DC Area</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item hovered">Food</a>
+          <a href="" class="list-group-item hovered">Food</a>
           <a href="/home_apparel" class="list-group-item">Apparel</a>
           <a href="/home_misc" class="list-group-item">Miscellaneous</a>
         </div>
@@ -101,10 +98,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/food/apple.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/food/apple.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Apple</a>
+                  <a href="/get_data_res?query=apple">Apple</a>
                 </h4>
                 <h5>$1.50</h5>
                 <p class="card-text">Currently Needed.</p>
@@ -117,10 +114,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/food/banana.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/food/banana.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Banana</a>
+                  <a href="/get_data_res?query=banana">Banana</a>
                 </h4>
                 <h5>$1.00</h5>
                 <p class="card-text">Currently Needed.</p>
@@ -133,10 +130,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/food/bread.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/food/bread.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Bread</a>
+                  <a href="/get_data_res?query=bread">Bread</a>
                 </h4>
                 <h5>$5.00</h5>
                 <p class="card-text">Currently Needed.</p>
@@ -149,10 +146,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/food/carrot.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/food/carrot.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Carrot</a>
+                  <a href="/get_data_res?query=carrot">Carrot</a>
                 </h4>
                 <h5>$2.50</h5>
                 <p class="card-text">Currently Needed.</p>
@@ -165,10 +162,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/food/egg.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/food/egg.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Egg</a>
+                  <a href="/get_data_res?query=egg">Egg</a>
                 </h4>
                 <h5>$0.75</h5>
                 <p class="card-text">Currently Needed.</p>
@@ -181,10 +178,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/food/orange.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/food/orange.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Orange</a>
+                  <a href="/get_data_res?query=orange">Orange</a>
                 </h4>
                 <h5>$1.50</h5>
                 <p class="card-text">Currently Needed.</p>
@@ -219,67 +216,19 @@
   <script src="/static/vendor/jquery/jquery.min.js"></script>
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
-	<script> 
+  <script>
 	$(() => {
-	
-		var map = {"hat":"clothes/hat.png", 
-			"pant":"clothes/pant.png", 
-			"shirt":"clothes/shirt.png", 
-			"shoe":"clothes/shoe.png", 
-			"sock":"clothes/sock.png", 
-			"sweater":"clothes/sweater.png", 
-			"apple":"food/apple.png", 
-			"banana":"food/banana.png", 
-			"bread":"food/bread.png", 
-			"carrot":"food/carrot.png", 
-			"egg":"food/egg.png", 
-			"orange":"food/orange.png", 
-			"backpack":"misc/backpack.png", 
-			"blanket":"misc/blanket.png", 
-			"bottle":"misc/bottle.png", 
-			"chapstick":"misc/chapstick.png", 
-			"comb":"misc/comb.png", 
-			"tissue":"misc/tissue.png"
-		};
-		
-		$.ajax({
-		  type: 'GET',
-		  url: '\get_info',
-		  success: (data) => {
-			putFormat(data.val);
-		  }
+			$('.card-img-top').click((e) => {
+				$.ajax({
+					type: 'GET', 
+					url: '/get_data_res',
+					data: {
+						query: $(this).text().toLowerCase()
+					}
+				});
+				e.preventDefault();
+			});
 		});
-
-		getMoney = (token) => {
-		  return '$' + (''+(Number(token)).toFixed(2)).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-		}
-
-		/* Data format: [itemName, userName, cost (as a string)] */
-		putFormat = (data) => {
-		  data.forEach((item) => {
-			let imgName = '/static/ayush/' + map[item[0].toLowerCase()];
-			item[2] = getMoney(item[2]);
-			let token = 
-			`<div class="col-lg-4 col-md-6 mb-4">
-				   <div class="card h-100">
-					 <a href="#"><img class="card-img-top" src=${imgName} alt=""></a>
-					 <div class="card-body">
-					   <h4 class="card-title">
-						 <a href="#">${item[0]}</a>
-					   </h4>
-					   <h5>${item[2]}</h5>
-					 </div>
-					 <div class="card-footer">
-					   <small class="text-muted">${item[1]}</small>
-					 </div>
-				   </div>
-				 </div>
-			`;
-			
-			$('.row').append(token);
-			});    
-		};
-	});
   </script>
 </body>
 

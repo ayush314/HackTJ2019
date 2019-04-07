@@ -43,9 +43,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
-		  <li class="nav-item">
-			<a class="nav-link" href="/">Logout</a>
-		  </li>
         </ul>
       </div>
     </div>
@@ -62,7 +59,7 @@
         <div class="list-group">
           <a href="/home_food" class="list-group-item">Food</a>
           <a href="/home_apparel" class="list-group-item">Apparel</a>
-          <a href="#" class="list-group-item hovered">Miscellaneous</a>
+          <href="/get_data_res?query=shoe" class="list-group-item hovered">Miscellaneous</a>
         </div>
 
       </div>
@@ -101,13 +98,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/misc/backpack.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/misc/backpack.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Backpack</a>
+                  <a href="/get_data_res?query=backpack">Backpack</a>
                 </h4>
                 <h5>$</h5>
-                <p class="card-text">Currently Needed!</p>
+                <p class="card-text">Currently Needed.</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Person</small>
@@ -117,13 +114,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/misc/blanket.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/misc/blanket.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Blanket</a>
+                  <a href="/get_data_res?query=blanket">Blanket</a>
                 </h4>
                 <h5>$</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                <p class="card-text">Currently Needed.</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Person</small>
@@ -133,13 +130,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/misc/bottle.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/misc/bottle.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Bottle</a>
+                  <a href="/get_data_res?query=bottle">Bottle</a>
                 </h4>
                 <h5>$</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                <p class="card-text">Currently Needed.</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Person</small>
@@ -149,13 +146,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/misc/chapstick.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/misc/chapstick.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Chapstick</a>
+                  <a href="/get_data_res?query=chapstick">Chapstick</a>
                 </h4>
                 <h5>$</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                <p class="card-text">Currently Needed.</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Person</small>
@@ -165,13 +162,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/misc/comb.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/misc/comb.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Comb</a>
+                  <a href="/get_data_res?query=comb">Comb</a>
                 </h4>
                 <h5>$</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                <p class="card-text">Currently Needed.</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Person</small>
@@ -181,13 +178,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="/static/ayush/misc/tissue.png" alt=""></a>
+              <a href=""><img class="card-img-top" src="/static/ayush/misc/tissue.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Tissue</a>
+                  <a href="/get_data_res?query=tissue">Tissue</a>
                 </h4>
                 <h5>$</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                <p class="card-text">Currently Needed.</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">Person</small>
@@ -220,64 +217,16 @@
   <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script> 
 	$(() => {
-	
-		var map = {"hat":"clothes/hat.png", 
-			"pant":"clothes/pant.png", 
-			"shirt":"clothes/shirt.png", 
-			"shoe":"clothes/shoe.png", 
-			"sock":"clothes/sock.png", 
-			"sweater":"clothes/sweater.png", 
-			"apple":"food/apple.png", 
-			"banana":"food/banana.png", 
-			"bread":"food/bread.png", 
-			"carrot":"food/carrot.png", 
-			"egg":"food/egg.png", 
-			"orange":"food/orange.png", 
-			"backpack":"misc/backpack.png", 
-			"blanket":"misc/blanket.png", 
-			"bottle":"misc/bottle.png", 
-			"chapstick":"misc/chapstick.png", 
-			"comb":"misc/comb.png", 
-			"tissue":"misc/tissue.png"
-		};
-		
-		$.ajax({
-		  type: 'GET',
-		  url: '\get_info',
-		  success: (data) => {
-			putFormat(data.val);
-		  }
+		$('.card-img-top').click((e) => {
+			$.ajax({
+				type: 'GET', 
+				url: '/get_data_res',
+				data: {
+					query: $(this).text().toLowerCase()
+				}
+			});
+			e.preventDefault();
 		});
-
-		getMoney = (token) => {
-		  return '$' + (''+(Number(token)).toFixed(2)).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-		}
-
-		/* Data format: [itemName, userName, cost (as a string)] */
-		putFormat = (data) => {
-		  data.forEach((item) => {
-			let imgName = '/static/ayush/' + map[item[0].toLowerCase()];
-			item[2] = getMoney(item[2]);
-			let token = 
-			`<div class="col-lg-4 col-md-6 mb-4">
-				   <div class="card h-100">
-					 <a href="#"><img class="card-img-top" src=${imgName} alt=""></a>
-					 <div class="card-body">
-					   <h4 class="card-title">
-						 <a href="#">${item[0]}</a>
-					   </h4>
-					   <h5>${item[2]}</h5>
-					 </div>
-					 <div class="card-footer">
-					   <small class="text-muted">${item[1]}</small>
-					 </div>
-				   </div>
-				 </div>
-			`;
-			
-			$('.row').append(token);
-			});    
-		};
 	});
   </script>
   

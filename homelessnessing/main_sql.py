@@ -54,15 +54,47 @@ def root():
 def homeless_info():
 	return render_template('homeless.html')
 	
+#Getting form data works
+#DONE with sql
+#Donor login page
 @app.route('/donor_login', methods=['GET', 'POST'])
 def donor_login():
-	return render_template('donor_login.html')
+	if request.method == 'POST':
+	#do some safe stuff here to make mal-stuff impossible
+		username = request.form.get('username', '')
+		password = request.form.get('password', '')
+		email = request.form.get('email', '')
+		
+		if (verify_acc(email, password)):
+			return redirect('/home_apparel')
+		else:
+			return render_template('/donor_login.html', failure='1')
+		
+	else:
+		return render_template('donor_login.html')
+		
+def genRandomID():
+	return random.randint(0, 100000000)
 	
 #DONE sql
 #register a donor with values
 @app.route('/donor_register', methods=['GET', 'POST'])
 def donor_register():
-	return render_template('donor_register.html')
+	if request.method == 'POST':
+		username = request.form.get('username', '')
+		password = request.form.get('password', '')
+		email = request.form.get('email', '')
+
+		cursor = conn.cursor()
+		args = [username, password, email, str(genRandomID()), 0]
+		a = cursor.callproc('register', args)
+		conn.commit()
+		
+		print(args)
+		print(cursor.fetchall())
+		return redirect('/home_apparel')
+	else:
+		return render_template('donor_register.html')
 	
 #DONE except for elastic
 #New URL for accepting text & request from hardware
@@ -95,7 +127,10 @@ def home_misc():
 def get_info():
 	return jsonify({'val': [['Apple', 'Rick', '5']]})
 	
-#table_info - functional on sujay's
+@app.route('/send_test', methods = ['POST'])
+def send_test():
+	print(request.get_json())
+	content = request.args.get
 	
 @app.route('/get_data_res', methods=['GET', 'POST'])
 def get_data_res():
@@ -108,10 +143,8 @@ def get_data_res():
 		location = "Washington D.C."
 		
 		queryjson = jsonify({
-			'items': gquery,
-			'location': location
+			items: gquery
 		})
-		
 		#do sujay magic
 		'''
 		Send a request to the cloud with queryjson as the parameter
@@ -122,7 +155,8 @@ def get_data_res():
 		'''
 		
 		#Location, text, isAddressed
-		json = {'val': [['DC', 'Food plz']]}
+		json = {'val': [['DC', 'Food plz', 'true']]}
+		print(gquery, tquery)
 		return jsonify(json)
 		
 	
