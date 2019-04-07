@@ -7,10 +7,6 @@ from flask import redirect
 from flaskext.mysql import MySQL #pip install flask-mysql
 from werkzeug.utils import secure_filename
 import os, sys, random
-import json
-import sys
-from json import dumps
-from elasticsearch import Elasticsearch
 
 UPLOAD_FOLDER = 'D:/python/flask/homelessnessing/uploads'
 okay_ext = set(['wav'])
@@ -18,15 +14,15 @@ okay_ext = set(['wav'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-#mysql = MySQL()
+mysql = MySQL()
 
-#app.config['MYSQL_DATABASE_USER'] = 'root'
-#app.config['MYSQL_DATABASE_PASSWORD'] = 's7xye920kh'
-#app.config['MYSQL_DATABASE_DB'] = 'basiclogin'
-#app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-#mysql.init_app(app)
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 's7xye920kh'
+app.config['MYSQL_DATABASE_DB'] = 'basiclogin'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+mysql.init_app(app)
 
-#conn = mysql.connect()
+conn = mysql.connect()
 
 #DONE
 #Check if there's an extension, and if it's valid
@@ -35,7 +31,6 @@ def file_okay(filename):
 
 #DONE
 #Check with the database if an email/password entry exists
-'''
 def verify_acc(email, password):
 	
 	cursor = conn.cursor()
@@ -46,7 +41,7 @@ def verify_acc(email, password):
 	# print(email, password)
 	print(res)
 	return len(res) == 0
-'''	
+	
 #DONE
 #Home
 @app.route('/')
@@ -58,49 +53,16 @@ def root():
 @app.route('/homeless_info')
 def homeless_info():
 	return render_template('homeless.html')
-
-
-#Getting form data works
-#DONE with sql
-#Donor login page
+	
 @app.route('/donor_login', methods=['GET', 'POST'])
 def donor_login():
-    '''	if request.method == 'POST':
-	#do some safe stuff here to make mal-stuff impossible
-		username = request.form.get('username', '')
-		password = request.form.get('password', '')
-		email = request.form.get('email', '')
-		
-		if (verify_acc(email, password)):
-			return redirect('/home_apparel')
-		else:
-			return render_template('/donor_login.html', failure='1')
-		
-	else:
-    '''
-    return redirect('/home_apparel')
-		
-def genRandomID():
-	return random.randint(0, 100000000)
+	return render_template('donor_login.html')
 	
 #DONE sql
 #register a donor with values
 @app.route('/donor_register', methods=['GET', 'POST'])
 def donor_register():
-    '''	if request.method == 'POST':
-		username = request.form.get('username', '')
-		password = request.form.get('password', '')
-		email = request.form.get('email', '')
-
-		cursor = conn.cursor()
-		args = [username, password, email, str(genRandomID()), 0]
-		cursor.callproc('register', args)
-		
-		print(args)
-		return redirect('/home_apparel')
-	else:
-    '''
-    return redirect('donor_register.html')
+	return render_template('donor_register.html')
 	
 #DONE except for elastic
 #New URL for accepting text & request from hardware
@@ -116,72 +78,6 @@ def post_req():
   #do magic with elastic - make entry into database
 
   return jsonify({success: 'Success!'})
-
-
-@app.route('/send_test', methods=['POST','GET'])
-def send_test():
-    if request.method == 'POST':
-        
-
-        def indexRecord(record):
-            es = Elasticsearch("10.150.0.5:9200")
-            es.index(index="homelesdata",
-                     doc_type="doc",
-                     body=dumps(record))
-
-        location = "Washington D.C."
-        text = request.values['text']
-
-        record = {"location": location, "text": text, "isAddressed": False}
-        indexRecord(record)
-        
-        return "Welcome to the bullshit"
-        render_template('About-Contact/startbootstrap-new-age-gh-pages/About-Contact.html')
-    else:
-        render_template('About-Contact/startbootstrap-new-age-gh-pages/About-Contact.html')
-    
-@app.route('/get_data_res', methods=['GET', 'POST'])
-def get_data_res():
-    tquery = request.args.get('other', '')
-    if (tquery == ''):
-        gquery = request.args.get('query', '')
-        return render_template('HomePage/startbootstrap-shop-homepage-gh-pages/Data_Dump.html', query=gquery)
-    else:
-        es = Elasticsearch("10.150.0.5:9200")
-
-        searchQuery = request.args.get('query', '')
-        locations = []
-
-        locations.append("Washington D.C.")
-
-        body = {
-                "query": {
-                        "bool": {
-                                "must": {
-                                        "match": {
-                                                "text": searchQuery
-                                        }
-                                },
-                                "filter": {
-                                    "bool": {
-                                        "must" : [
-                                                 { "terms" : {"location.keyword": locations}},
-                                                 { "term" : {"isAddressed": False}}
-                                              ]
-                                    }
-                                }
-                        }
-                }
-        }
-    
-        res = es.search(index="homelesdata", body=body)
-        print("Got %d hits:" % res['hits']['total'])
-        val = []
-        for hit in res['hits']['hits']:
-            print(hit["_source"])
-            val.append(jsonify(hit["_source"]))
-
-        return val
 
 @app.route('/home_apparel')
 def home_apparel(): 
@@ -199,12 +95,44 @@ def home_misc():
 def get_info():
 	return jsonify({'val': [['Apple', 'Rick', '5']]})
 	
+#table_info - functional on sujay's
+	
+@app.route('/get_data_res', methods=['GET', 'POST'])
+def get_data_res():
+	tquery = request.args.get('other', '')
+	if (tquery == ''):
+		gquery = request.args.get('query', '')
+		return render_template('HomePage/startbootstrap-shop-homepage-gh-pages/Data_Dump.html', query=gquery)
+	else:
+		gquery = request.args.get('query', '')
+		location = "Washington D.C."
+		
+		queryjson = jsonify({
+			'items': gquery,
+			'location': location
+		})
+		
+		#do sujay magic
+		'''
+		Send a request to the cloud with queryjson as the parameter
+		Receive a JSON object called json (as below), with a single variable containing a 2D array
+		Each array in the 2D array should have the format as below - [location, text, addressed]
+		Preferrably, keep the item name 'val', but if it has to be something else because hackathon,
+		just tell me because I have to change the HTML
+		'''
+		
+		#Location, text, isAddressed
+		json = {'val': [['DC', 'Food plz']]}
+		return jsonify(json)
+		
+	
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)	
-
+    app.run(debug=True)
+	
 #<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 #TODO
+
 '''
 For Sujay: sending the request from the hardware
 
