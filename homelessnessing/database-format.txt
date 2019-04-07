@@ -1,3 +1,29 @@
-User (
-	Name
+table Users (
+	username varchar(40)
+	pass varchar(60)
+	email varchar(60)
+	id varchar(100)
+	count int
+)
 	
+PROCEDURE register(in uname varchar(40), in pword varchar(60), in email varchar(60), in id varchar(100), in cnt int)
+
+BEGIN
+ 
+	insert into Users values(
+	username= uname,
+    pass= pword,
+    email= email,
+    id= id,
+    count= cnt
+  );
+
+END
+
+PROCEDURE getacc(in pword varchar(60), in email varchar(60))
+
+BEGIN
+ 
+	select * from Users where pass = pword and email = email;
+
+END
